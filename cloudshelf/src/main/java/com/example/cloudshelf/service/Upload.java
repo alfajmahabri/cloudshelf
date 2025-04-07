@@ -40,6 +40,6 @@ public class Upload {
 
         s3Client.putObject(objectRequest, software.amazon.awssdk.core.sync.RequestBody.fromBytes(fileBytes));
 
-        return "Done";
+        return key+"Uploaded";
     }
 }

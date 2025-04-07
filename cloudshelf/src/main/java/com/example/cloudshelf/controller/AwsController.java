@@ -1,6 +1,7 @@
 package com.example.cloudshelf.controller;
 
 import com.example.cloudshelf.service.Download;
+import com.example.cloudshelf.service.Head;
 import com.example.cloudshelf.service.Upload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 public class AwsController {
@@ -22,6 +25,9 @@ public class AwsController {
 
     @Autowired
     private Upload upload;
+
+    @Autowired
+    private Head head;
 
     @GetMapping("/download/{key}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String key){
@@ -34,9 +40,15 @@ public class AwsController {
 
     @PostMapping("/upload")
     public ResponseEntity<Void> uploadFile(){
-        upload.uploadFile("Hello.jpg","C:/Downloads/hello.jpg");
+        upload.uploadFile("e.jpg","C:/Users/mahab/Downloads/e.png");
         return new ResponseEntity<>(HttpStatus.CREATED);
-        //
+    }
+
+
+    @GetMapping("/list")
+    public ResponseEntity<List<String>> listFiles(){
+        List<String> files = head.listObjects();
+        return ResponseEntity.ok(files);
     }
 
 }

@@ -28,7 +28,6 @@ public class Download {
 
         ResponseBytes<GetObjectResponse> objectBytes = s3Client.getObjectAsBytes(getObjectRequest);
         return new ByteArrayResource(objectBytes.asByteArray());
-
     }
 
 }
