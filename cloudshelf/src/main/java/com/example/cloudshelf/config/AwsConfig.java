@@ -36,7 +36,6 @@ public class AwsConfig {
                 .credentialsProvider(DefaultCredentialsProvider.create())
                 .region(Region.of(regionName))
                 .build();
-
          */
     }
 }
